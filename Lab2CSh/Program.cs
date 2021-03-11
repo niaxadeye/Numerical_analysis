@@ -60,15 +60,18 @@ namespace Lab2CSh
             Stopwatch stopwatch = new Stopwatch();
             Console.WriteLine("\nМетод Простых итераций");
             double prev;
-            int counter = 1;
+          
             stopwatch.Start();
             double x = FuncFi(a);
-            do
+            prev = x;
+            x = FuncFi(prev);
+            int counter = 2;
+            while (Math.Abs(x - prev) > eps)
             {
                 counter++;
                 prev = x;
                 x = FuncFi(prev);
-            } while (Math.Abs(x - prev) > eps);
+            }
             stopwatch.Stop();
             Console.WriteLine($"x = {x}");
             Console.WriteLine($"counter = {counter}");
@@ -82,13 +85,15 @@ namespace Lab2CSh
             double c;
             int counter = 0;
             stopwatch.Start();
-            do
+            c = a - ((b - a) / (Func(b) - Func(a))) * Func(a);
+            if (Func(a) * Func(c) > 0) a = c; else b = c;
+            while (Math.Abs(b - a) > eps)
             {
                 counter++;
                 c = a - ((b - a) / (Func(b) - Func(a))) * Func(a);
                 if (Func(a) * Func(c) > 0) a = c; else b = c;
                 Console.WriteLine($"a = {a} b = {b}");
-            } while (Math.Abs(b - a) > eps);
+            }
             double x = (a + b) / 2;
             stopwatch.Stop();
             Console.WriteLine($"x = {x}");
@@ -109,7 +114,6 @@ namespace Lab2CSh
                 prev = x;
                 x = prev - (Func(prev) * (prev - x0)) / (Func(prev) - Func(x0));
                 counter++;
-                Console.WriteLine($"prev = {prev} x = {x}");
             } while (Math.Abs(x - prev) > eps);
             stopwatch.Stop();
             Console.WriteLine($"x = {x}");

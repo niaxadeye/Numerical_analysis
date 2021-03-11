@@ -28,7 +28,7 @@ namespace Lab4CSh
             double yk = y + Dy;
 
             int counter = 1;
-
+                
             while (Math.Abs(xk - x) > eps && Math.Abs(yk - y) > eps)
             {
                 x = xk;
