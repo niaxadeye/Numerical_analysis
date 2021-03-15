@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab2CSh
+namespace Lab2and3
 {
     class Program
     {
@@ -36,7 +36,7 @@ namespace Lab2CSh
             Console.WriteLine($"Время выполнения = {stopwatch.Elapsed.TotalMilliseconds} ms");
         }
 
-        public static void Newton (double a,double eps)
+        public static void Newton(double a, double eps)
         {
             Stopwatch stopwatch = new Stopwatch();
             Console.WriteLine("\nМетод Ньютона");
@@ -60,7 +60,7 @@ namespace Lab2CSh
             Stopwatch stopwatch = new Stopwatch();
             Console.WriteLine("\nМетод Простых итераций");
             double prev;
-          
+
             stopwatch.Start();
             double x = FuncFi(a);
             prev = x;
@@ -134,7 +134,7 @@ namespace Lab2CSh
             Console.WriteLine("Введите желаемую точность");
 
             Console.Write("eps = ");
-            double eps = Convert.ToDouble(Console.ReadLine());;
+            double eps = Convert.ToDouble(Console.ReadLine()); ;
 
             Dichotomy(a, b, eps);
             Newton(a, eps); //a - начальное приближение
