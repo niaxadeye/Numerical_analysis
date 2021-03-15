@@ -12,27 +12,20 @@ namespace Lab8
         static void Main(string[] args)
         {
             double a, b;
-            Console.Write("Введите eps: ");
-            double eps = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Введите число разбиений: ");
+            int n = Convert.ToInt32(Console.ReadLine());
             a = 0;
             b = 1;
-            double h;
-            double I = eps + 1;
-            double I1 = 0;
-            for (int N = 2; (N <= 4) || Math.Abs(I1 - I) > eps; N *= 2)
+            double ans = 0.463647609000806;
+            double s = 0;
+            double h = (b - a) / n;
+            for (double i = a; i < b - h; i = i + 2*h)
             {
-                double sum2 = 0, sum4 = 0, sum;
-                h = (b - a) / (2 * N);
-                for (int i = 1; i <= 2 * N; i += 2)
-                {
-                    sum4 += Func(a + h * i);
-                    sum2 += Func(a + h * (i + 1));
-                }
-                sum = Func(a) + 4 * sum4 + 2 * sum2 - Func(b);
-                I = I1;
-                I1 = (h / 3) * sum;
+                s += (Func(i)+4*Func(i+h) + Func(i+2*h))*h/3;
             }
-            Console.WriteLine(I1);
+            Console.WriteLine($"{s} - Ответ");
+            Console.WriteLine($"{ans} - Точное значение интеграла");
+            Console.WriteLine($"Точное значение интеграла - ответ =  {Math.Abs(ans - s)}");
             Console.ReadKey();
         }
     }
